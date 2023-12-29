@@ -63,9 +63,11 @@ class ChirpPolicy
      * @param  \App\Models\Chirp  $chirp
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, Chirp $chirp)
+    public function delete(User $user, Chirp $chirp): bool
     {
-        //
+        // return $chirp->user()->is($user)
+        // Anyone that is authorized to 'update' will also be authorized to 'delete'
+        return $this->update($user, $chirp);
     }
 
     /**
